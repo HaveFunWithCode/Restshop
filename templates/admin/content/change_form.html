@@ -7,18 +7,24 @@
         $(function(){
             // inspect html to check id of category select dropdown.
             $(document).on('change', "select#id_category", function(){
-                $.get($(location).attr('href'),{id: $(this).val()},function () {
-
-
-                });
-                $.getJSON("/get_brands/",{id: $(this).val()}, function(j){
-                     var options = '<option value="">---------</option>';
-                     for (var i = 0; i < j.length; i++) {
-                         options += '<option value="' + j[i].id + '">' + j[i].brand_name + '</option>';
-                     }
-                     // inspect html to check id of subcategory select dropdown.
-                     $("select#id_brand").html(options);
-                 });
+                //
+                 var url = new URL(window.location.href);
+                 url.searchParams.set('id',$(this).val());
+                 window.location.href = url.href;
+                 // window.location.reload();
+                // $.get($(location).attr('href'),{id: $(this).val()});
+                // $.get($(location).attr('href'),{id: $(this).val()},function () {
+                //
+                //     $('div#values_editor').load(document.URL +  ' div#values_editor');
+                // });
+                // $.getJSON("/get_brands/",{id: $(this).val()}, function(j){
+                //      var options = '<option value="">---------</option>';
+                //      for (var i = 0; i < j.length; i++) {
+                //          options += '<option value="' + j[i].id + '">' + j[i].brand_name + '</option>';
+                //      }
+                //      // inspect html to check id of subcategory select dropdown.
+                //      $("select#id_brand").html(options);
+                //  });
              });
          });
     </script>

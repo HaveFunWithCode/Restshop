@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a66a60ca-c29f-47d9-bd27-39d1507cb306" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/admin/base_site.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/attSchemas/66748228.json" beforeDir="false" afterPath="$PROJECT_DIR$/attSchemas/66748228.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/content/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin/content/change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/content/change_form.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +101,7 @@
       <workItem from="1579626921864" duration="2910000" />
       <workItem from="1579938811997" duration="54593000" />
       <workItem from="1580194795365" duration="146000" />
-      <workItem from="1580195078748" duration="18394000" />
+      <workItem from="1580195078748" duration="25996000" />
     </task>
     <servers />
   </component>
@@ -118,10 +113,10 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="457" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1580021314373" />
-    <state x="924" y="575" width="474" height="451" key="#xdebugger.evaluate" timestamp="1580231177798">
+    <state x="924" y="575" width="474" height="451" key="#xdebugger.evaluate" timestamp="1580328196759">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="924" y="575" width="474" height="451" key="#xdebugger.evaluate/65.24.1855.1056@65.24.1855.1056" timestamp="1580231177798" />
+    <state x="924" y="575" width="474" height="451" key="#xdebugger.evaluate/65.24.1855.1056@65.24.1855.1056" timestamp="1580328196759" />
     <state width="1203" height="466" key="DebuggerActiveHint" timestamp="1580230249411">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
@@ -130,38 +125,38 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="780" y="297" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1580021304359" />
-    <state width="1809" height="316" key="GridCell.Tab.0.bottom" timestamp="1580232738349">
+    <state width="1809" height="316" key="GridCell.Tab.0.bottom" timestamp="1580328201641">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738349" />
-    <state width="1809" height="316" key="GridCell.Tab.0.center" timestamp="1580232738348">
+    <state width="1809" height="316" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201641" />
+    <state width="1809" height="316" key="GridCell.Tab.0.center" timestamp="1580328201638">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738348" />
-    <state width="1809" height="316" key="GridCell.Tab.0.left" timestamp="1580232738348">
+    <state width="1809" height="316" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201638" />
+    <state width="1809" height="316" key="GridCell.Tab.0.left" timestamp="1580328201636">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738348" />
-    <state width="1809" height="316" key="GridCell.Tab.0.right" timestamp="1580232738349">
+    <state width="1809" height="316" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201636" />
+    <state width="1809" height="316" key="GridCell.Tab.0.right" timestamp="1580328201639">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738349" />
-    <state width="1809" height="316" key="GridCell.Tab.1.bottom" timestamp="1580232738350">
+    <state width="1809" height="316" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201639" />
+    <state width="1809" height="316" key="GridCell.Tab.1.bottom" timestamp="1580328201645">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738350" />
-    <state width="1809" height="316" key="GridCell.Tab.1.center" timestamp="1580232738349">
+    <state width="1809" height="316" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201645" />
+    <state width="1809" height="316" key="GridCell.Tab.1.center" timestamp="1580328201643">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738349" />
-    <state width="1809" height="316" key="GridCell.Tab.1.left" timestamp="1580232738349">
+    <state width="1809" height="316" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201643" />
+    <state width="1809" height="316" key="GridCell.Tab.1.left" timestamp="1580328201642">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738349" />
-    <state width="1809" height="316" key="GridCell.Tab.1.right" timestamp="1580232738350">
+    <state width="1809" height="316" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201642" />
+    <state width="1809" height="316" key="GridCell.Tab.1.right" timestamp="1580328201644">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580232738350" />
+    <state width="1809" height="316" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201644" />
     <state width="927" height="542" key="XDebugger.FullValuePopup" timestamp="1580036719368">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
@@ -170,26 +165,34 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="655" y="367" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1580195087157" />
+    <state x="559" y="237" width="866" height="602" key="find.popup" timestamp="1580328642797">
+      <screen x="65" y="24" width="1855" height="1056" />
+    </state>
+    <state x="559" y="237" width="866" height="602" key="find.popup/65.24.1855.1056@65.24.1855.1056" timestamp="1580328642797" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/content/views.py</url>
-          <line>45</line>
+          <line>43</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/templates/admin/content/change_form.html</url>
-          <line>9</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="20" />
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/content/admin.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/content/admin.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/finalonlineShop$views.coverage" NAME="manage Coverage Results" MODIFIED="1580112476373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/finalonlineShop$manage.coverage" NAME="manage Coverage Results" MODIFIED="1580232498996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/finalonlineShop$manage.coverage" NAME="manage Coverage Results" MODIFIED="1580328075601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

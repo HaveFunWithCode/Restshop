@@ -2,8 +2,6 @@ import json
 
 from django.http import HttpResponse
 from django.shortcuts import render
-
-from .admin import Make_ProductJSONModelAdminForm
 from .forms import AttribiutFormSet,Catform
 from genson import SchemaBuilder
 from .models import Category, Type, Brand
