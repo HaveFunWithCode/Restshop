@@ -74,7 +74,7 @@ class Product(models.Model):
     description=models.TextField(max_length=500,null=True,blank=True)
     category=models.ForeignKey(Category,null=False,verbose_name='دسته',on_delete=models.CASCADE)
 
-    values=JSONSchemaField()
+    values = JSONField()
     brand=models.ForeignKey(Brand,on_delete=models.CASCADE,null=True)
 
     def __str__(self):

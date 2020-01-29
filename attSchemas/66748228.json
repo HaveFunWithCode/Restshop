@@ -1,1 +1,2 @@
-{"$schema": "http://json-schema.org/schema#", "type": "object", "properties": {"cpu": {"type": "string"}, "ram": {"type": "string"}, "\u062f\u0648\u0631\u0628\u06cc\u0646 \u062c\u0644\u0648 \u062f\u0627\u0631\u062f": {"type": "boolean"}}}
+{"$schema": "http://json-schema.org/schema#", "type": "object", "properties":
+{"cpu": {"type": "string"}, "android version": {"type": "string"}, "front doorbin": {"type": "boolean"}}}

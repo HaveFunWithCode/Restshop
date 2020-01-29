@@ -13,6 +13,7 @@ psycopg2 = "*"
 jsonschema = "*"
 environ = "*"
 django-environ = "*"
+django-jsonschema-form = "*"
 
 [requires]
 python_version = "3.6"

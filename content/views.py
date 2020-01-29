@@ -2,6 +2,8 @@ import json
 
 from django.http import HttpResponse
 from django.shortcuts import render
+
+from .admin import Make_ProductJSONModelAdminForm
 from .forms import AttribiutFormSet,Catform
 from genson import SchemaBuilder
 from .models import Category, Type, Brand
@@ -59,3 +61,12 @@ def get_brands(request):
     id=request.GET.get('id','')
     result=list(Brand.objects.filter(category_id=int(id)).values('id','brand_name'))
     return HttpResponse(json.dumps(result),content_type="application/json")
+
+def get_attributes_Schema_name(request):
+    id=request.GET.get('id','')
+    shema_name=Category.objects.filter(id==int(id)).values('attributes_Schema_name')
+    return shema_name
+
+# def get_product_view(request):
+#     id = request.GET.get('id', '')
+#     form=Make_ProductJSONModelAdminForm(cat_id=int(id))

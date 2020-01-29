@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'content',
     'rest_framework',
     'rest_framework.authtoken',
+    'jsonschemaform',
+'django_admin_json_editor',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 PRODUCTIMAGE_PATH='images/products/'
+
+JSONSCHEMAFORM = {
+    'css': {
+        'all': (
+            'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
+        )
+    },
+    'options': {
+        'theme': 'bootstrap3',
+        'iconlib': 'bootstrap3',
+        'no_additional_properties': True,
+        'disable_collapse': True,
+    }
+}
