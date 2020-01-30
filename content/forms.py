@@ -32,4 +32,5 @@ class AttribiutForm(forms.Form):
     att_type=forms.MultipleChoiceField(choices=type_choices)
 
 
+
 AttribiutFormSet=formset_factory(AttribiutForm)

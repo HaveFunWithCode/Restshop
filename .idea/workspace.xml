@@ -2,22 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a66a60ca-c29f-47d9-bd27-39d1507cb306" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/base_site.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attSchemas/1017859.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/attSchemas/66748228.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/content/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/content/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/content/change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/content/change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/products/142563.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/products/ali.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/content/change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/content/templates/content/my_product_admin.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -36,15 +58,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/admin/content" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/content/templates/content" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/templates/admin/content" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/content/static/content" />
+      <recent name="$PROJECT_DIR$/templates/admin/content/Product" />
       <recent name="$PROJECT_DIR$/content/templates/content" />
       <recent name="$PROJECT_DIR$/content/templates" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/content/templates/content" />
+      <recent name="$PROJECT_DIR$/templates/admin/content" />
     </key>
   </component>
   <component name="RunManager">
@@ -101,7 +126,7 @@
       <workItem from="1579626921864" duration="2910000" />
       <workItem from="1579938811997" duration="54593000" />
       <workItem from="1580194795365" duration="146000" />
-      <workItem from="1580195078748" duration="25996000" />
+      <workItem from="1580195078748" duration="43402000" />
     </task>
     <servers />
   </component>
@@ -113,54 +138,54 @@
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="457" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1580021314373" />
-    <state x="924" y="575" width="474" height="451" key="#xdebugger.evaluate" timestamp="1580328196759">
+    <state x="934" y="388" width="925" height="451" key="#xdebugger.evaluate" timestamp="1580374462977">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state x="924" y="575" width="474" height="451" key="#xdebugger.evaluate/65.24.1855.1056@65.24.1855.1056" timestamp="1580328196759" />
-    <state width="1203" height="466" key="DebuggerActiveHint" timestamp="1580230249411">
+    <state x="934" y="388" width="925" height="451" key="#xdebugger.evaluate/65.24.1855.1056@65.24.1855.1056" timestamp="1580374462977" />
+    <state width="1203" height="466" key="DebuggerActiveHint" timestamp="1580333368546">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1203" height="466" key="DebuggerActiveHint/65.24.1855.1056@65.24.1855.1056" timestamp="1580230249411" />
+    <state width="1203" height="466" key="DebuggerActiveHint/65.24.1855.1056@65.24.1855.1056" timestamp="1580333368546" />
     <state x="780" y="297" key="FileChooserDialogImpl" timestamp="1580021304359">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="780" y="297" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1580021304359" />
-    <state width="1809" height="316" key="GridCell.Tab.0.bottom" timestamp="1580328201641">
+    <state width="1809" height="316" key="GridCell.Tab.0.bottom" timestamp="1580378960190">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201641" />
-    <state width="1809" height="316" key="GridCell.Tab.0.center" timestamp="1580328201638">
+    <state width="1809" height="316" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960190" />
+    <state width="1809" height="316" key="GridCell.Tab.0.center" timestamp="1580378960188">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201638" />
-    <state width="1809" height="316" key="GridCell.Tab.0.left" timestamp="1580328201636">
+    <state width="1809" height="316" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960188" />
+    <state width="1809" height="316" key="GridCell.Tab.0.left" timestamp="1580378960187">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201636" />
-    <state width="1809" height="316" key="GridCell.Tab.0.right" timestamp="1580328201639">
+    <state width="1809" height="316" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960187" />
+    <state width="1809" height="316" key="GridCell.Tab.0.right" timestamp="1580378960189">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201639" />
-    <state width="1809" height="316" key="GridCell.Tab.1.bottom" timestamp="1580328201645">
+    <state width="1809" height="316" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960189" />
+    <state width="1809" height="316" key="GridCell.Tab.1.bottom" timestamp="1580378960195">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201645" />
-    <state width="1809" height="316" key="GridCell.Tab.1.center" timestamp="1580328201643">
+    <state width="1809" height="316" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960195" />
+    <state width="1809" height="316" key="GridCell.Tab.1.center" timestamp="1580378960192">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201643" />
-    <state width="1809" height="316" key="GridCell.Tab.1.left" timestamp="1580328201642">
+    <state width="1809" height="316" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960192" />
+    <state width="1809" height="316" key="GridCell.Tab.1.left" timestamp="1580378960191">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201642" />
-    <state width="1809" height="316" key="GridCell.Tab.1.right" timestamp="1580328201644">
+    <state width="1809" height="316" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960191" />
+    <state width="1809" height="316" key="GridCell.Tab.1.right" timestamp="1580378960194">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580328201644" />
-    <state width="927" height="542" key="XDebugger.FullValuePopup" timestamp="1580036719368">
+    <state width="1809" height="316" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1580378960194" />
+    <state width="927" height="542" key="XDebugger.FullValuePopup" timestamp="1580371325085">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
-    <state width="927" height="542" key="XDebugger.FullValuePopup/65.24.1855.1056@65.24.1855.1056" timestamp="1580036719368" />
+    <state width="927" height="542" key="XDebugger.FullValuePopup/65.24.1855.1056@65.24.1855.1056" timestamp="1580371325085" />
     <state x="655" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1580195087157">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
@@ -175,24 +200,14 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/content/views.py</url>
-          <line>43</line>
+          <line>51</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/content/admin.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/content/admin.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/finalonlineShop$views.coverage" NAME="manage Coverage Results" MODIFIED="1580112476373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/finalonlineShop$manage.coverage" NAME="manage Coverage Results" MODIFIED="1580328075601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/finalonlineShop$manage.coverage" NAME="manage Coverage Results" MODIFIED="1580378947155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

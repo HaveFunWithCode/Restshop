@@ -70,12 +70,12 @@ class Brand(models.Model):
         return '({0}){1}'.format(self.category.category_name,self.brand_name)
 
 class Product(models.Model):
-    name=models.CharField(max_length=255,null=False,blank=False)
-    description=models.TextField(max_length=500,null=True,blank=True)
+    name=models.CharField(max_length=255,null=False,blank=False,verbose_name='نام محصول')
+    description=models.TextField(max_length=10000,null=True,blank=True,verbose_name='توضیحات')
     category=models.ForeignKey(Category,null=False,verbose_name='دسته',on_delete=models.CASCADE)
 
-    values = JSONField()
-    brand=models.ForeignKey(Brand,on_delete=models.CASCADE,null=True)
+    values = JSONField(verbose_name='ویژگی ها')
+    brand=models.ForeignKey(Brand,on_delete=models.CASCADE,null=True,verbose_name='برند')
 
     def __str__(self):
         return self.name
