@@ -93,6 +93,9 @@ def get_brands(request):
 #     id = request.GET.get('id', '')
 #     form=Make_ProductJSONModelAdminForm(cat_id=int(id))
 
+
+# TODO : should fix bug in post in list page
+# TODO: add caching to view set ...
 class ProductViewSet(viewsets.ModelViewSet):
     permission_classes = (IsSupplierOrAdminOrReadonly,)
     queryset = Product.objects.all()
