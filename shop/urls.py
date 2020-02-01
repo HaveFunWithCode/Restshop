@@ -20,4 +20,5 @@ from content.views import add_category,get_brands
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('content/',include('content.urls')),
+    path('',include('content.urls')),
 ]

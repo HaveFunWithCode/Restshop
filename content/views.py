@@ -3,12 +3,19 @@ import json
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from rest_framework.response import Response
+
 from .forms import AttribiutFormSet,Catform
 from genson import SchemaBuilder
-from .models import Category, Type, Brand
+from .models import Category, Type, Brand, Product
 import hashlib
+from .serializers import ProductSerializer
 
-from rest_framework.views import APIView
+from rest_framework import viewsets
+from .permissions import IsSupplierOrAdminOrReadonly
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+
 
 def __create_shema(attnames, atttypes, catname):
     b1=SchemaBuilder()
@@ -85,3 +92,15 @@ def get_brands(request):
 # def get_product_view(request):
 #     id = request.GET.get('id', '')
 #     form=Make_ProductJSONModelAdminForm(cat_id=int(id))
+
+class ProductViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsSupplierOrAdminOrReadonly,)
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+
+
+
+
+

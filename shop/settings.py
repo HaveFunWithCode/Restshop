@@ -150,3 +150,28 @@ JSONSCHEMAFORM = {
         'disable_collapse': True,
     }
 }
+
+#Memcached
+CACHES = {
+
+
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1;11211',
+    },
+
+    'database': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'shopcache',
+    },
+    'filesystem': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/home/shop/cache',
+    },
+    'locmem': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'DataFlair',
+    }
+
+
+}

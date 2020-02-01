@@ -78,7 +78,12 @@ class Product(models.Model):
     brand=models.ForeignKey(Brand,on_delete=models.CASCADE,null=True,verbose_name='برند')
 
     def __str__(self):
+
         return self.name
+    class Meta:
+        verbose_name=("محصول")
+        verbose_name_plural=("محصولات")
+
 
 class ProductUnit(models.Model):
     product=models.ForeignKey(Product,related_name='product_unit',on_delete=models.CASCADE)
