@@ -33,7 +33,35 @@ class CategoryAdmin(admin.ModelAdmin):
 #         fields="__all__"
 
 
+class VariantsWidget(forms.MultiWidget):
 
+        def __init__(self,names,values,attrs=None):
+            w=[]
+            for i,name in enumerate(names):
+                w.append(forms.Select(choices=tuple([(val,val) for val in values[i]])))
+
+            widgets=tuple(w)
+            super(VariantsWidget,self).__init__(widgets,attrs=attrs)
+
+        def decompress(self, value):
+            if value:
+                val = value
+                return val[:3],val[3:6],val[6:]
+            return None,None,None
+
+        def compress(self, data_list):
+            if data_list[0] and data_list[1] and data_list[2]:
+                return '%s''%s''%s' %(data_list[0],data_list[1],data_list[2])
+            else:
+                return None
+
+        def value_from_datadict(self,data,files,name):
+            val_list = [widget.value_from_datadict(data,files,name+'_%s' %i) for i,widget in enumerate(self.widgets)]
+            if val_list:
+                return '%s''%s''%s' %(val_list[0],val_list[1],val_list[2])
+
+        def format_output(self,rendered_widgets):
+            return '( '+rendered_widgets[0]+' )'+rendered_widgets[1]+' - '+rendered_widgets[2]
 class productUnitJsonForm(forms.ModelForm):
 
 
@@ -61,10 +89,12 @@ class productUnitJsonForm(forms.ModelForm):
             "required": ['color','size']
         }
 
-        self.fields['variant'].widget =forms.MultiWidget(widgets=[forms.Select(choices=(('g','gg'),('dd','ddd'))),
-                                                                  forms.Select(choices=(('a','aa'),('b','bb')))]).se
+        # self.fields['variant'].widget =forms.MultiWidget(widgets=[forms.Select(choices=(('g','gg'),('dd','ddd'))),
+        #                                                           forms.Select(choices=(('a','aa'),('b','bb')))])
         # self.fields['variant'].widget = forms.Select(choices=(('g','gg'),('dd','ddd')))
         # self.fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
+        self.fields['variant'].widget=VariantsWidget(['color','size'],[['red','black'],['L','M','S']])
+
     class Meta:
         model = ProductUnit
         fields="__all__"
