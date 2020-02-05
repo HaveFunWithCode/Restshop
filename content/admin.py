@@ -60,7 +60,11 @@ class productUnitJsonForm(forms.ModelForm):
             },
             "required": ['color','size']
         }
-        self.fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
+
+        self.fields['variant'].widget =forms.MultiWidget(widgets=[forms.Select(choices=(('g','gg'),('dd','ddd'))),
+                                                                  forms.Select(choices=(('a','aa'),('b','bb')))]).se
+        # self.fields['variant'].widget = forms.Select(choices=(('g','gg'),('dd','ddd')))
+        # self.fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
     class Meta:
         model = ProductUnit
         fields="__all__"
@@ -111,12 +115,12 @@ class productUnitJsonForm(forms.ModelForm):
 #     #     }
 #     #     self.fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, True)
 #     #
-@admin.register(ProductUnit)
-class productUnit(admin.ModelAdmin):
-    model = ProductUnit
-    form=productUnitJsonForm
-    extra = 1
-    fields =["variant","variant_title","seller","price","storage_count"]
+# @admin.register(ProductUnit)
+# class productUnit(admin.ModelAdmin):
+#     model = ProductUnit
+#     form=productUnitJsonForm
+#     extra = 1
+#     fields =["variant","variant_title","seller","price","storage_count"]
 
 class productUnitInline(admin.StackedInline):
     model = ProductUnit
@@ -180,6 +184,7 @@ class ProductJSONModelAdminForm(forms.ModelForm):
             "required":['color']
         }
 
+
         self.fields['values'].widget= JSONEditorWidget(DATA_SCHEMA)
 
     class Meta:
@@ -203,64 +208,64 @@ class ProductModelAdmin(admin.ModelAdmin):
     ]
     change_form_template="content/my_product_admin.html"
 
-    def get_formsets_with_inlines(self, request, obj=None):
-        # for inline in self.get_inline_instances(request, obj):
-        #     form = inline.form
-        #
-        #     DATA_SCHEMA = {
-        #         'type': 'object',
-        #         'title': 'Data',
-        #         'properties': {
-        #
-        #             'color': {
-        #                 'title': 'color',
-        #                 'type': 'string',
-        #                 'enum': ['red', 'blue', 'black']
-        #             },
-        #             'size': {
-        #                 'title': 'size',
-        #                 'type': 'string',
-        #                 'enum': ['L', 'M', 'S']
-        #             }
-        #
-        #         },
-        #         "required": ['color', 'size']
-        #     }
-        #     form.base_fields['variant'].widget.attrs['cols'] = 10
-        #
-        #     form.base_fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
-        #     yield inline
-        formsets = super(ProductModelAdmin, self).get_formsets_with_inlines(request, obj)
-        # for index,inline in enumerate(self.inlines):
-        for inline in self.get_inline_instances(request, obj):
-            if inline.model==ProductUnit:
-
-
-                # Do stuff with the form
-                DATA_SCHEMA = {
-                    'type': 'object',
-                    'title': 'Data',
-                    'properties': {
-
-                        'color': {
-                            'title': 'color',
-                            'type': 'string',
-                            'enum': ['red', 'blue', 'black']
-                        },
-                        'size': {
-                            'title': 'size',
-                            'type': 'string',
-                            'enum': ['L', 'M', 'S']
-                        }
-
-                    },
-                    "required": ['color', 'size']
-                }
-                inline.form.base_fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
-                yield inline.get_formset(request, obj), inline
-
-
-        # return formsets
+    # def get_formsets_with_inlines(self, request, obj=None):
+    #     # for inline in self.get_inline_instances(request, obj):
+    #     #     form = inline.form
+    #     #
+    #     #     DATA_SCHEMA = {
+    #     #         'type': 'object',
+    #     #         'title': 'Data',
+    #     #         'properties': {
+    #     #
+    #     #             'color': {
+    #     #                 'title': 'color',
+    #     #                 'type': 'string',
+    #     #                 'enum': ['red', 'blue', 'black']
+    #     #             },
+    #     #             'size': {
+    #     #                 'title': 'size',
+    #     #                 'type': 'string',
+    #     #                 'enum': ['L', 'M', 'S']
+    #     #             }
+    #     #
+    #     #         },
+    #     #         "required": ['color', 'size']
+    #     #     }
+    #     #     form.base_fields['variant'].widget.attrs['cols'] = 10
+    #     #
+    #     #     form.base_fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
+    #     #     yield inline
+    #     formsets = super(ProductModelAdmin, self).get_formsets_with_inlines(request, obj)
+    #     # for index,inline in enumerate(self.inlines):
+    #     for inline in self.get_inline_instances(request, obj):
+    #         if inline.model==ProductUnit:
+    #
+    #
+    #             # Do stuff with the form
+    #             DATA_SCHEMA = {
+    #                 'type': 'object',
+    #                 'title': 'Data',
+    #                 'properties': {
+    #
+    #                     'color': {
+    #                         'title': 'color',
+    #                         'type': 'string',
+    #                         'enum': ['red', 'blue', 'black']
+    #                     },
+    #                     'size': {
+    #                         'title': 'size',
+    #                         'type': 'string',
+    #                         'enum': ['L', 'M', 'S']
+    #                     }
+    #
+    #                 },
+    #                 "required": ['color', 'size']
+    #             }
+    #             inline.form.base_fields['variant'].widget = JSONEditorWidget(DATA_SCHEMA, False)
+    #             yield inline.get_formset(request, obj), inline
+    #
+    #
+    #     # return formsets
 
     def save_model(self, request, obj, form, change):
         super(ProductModelAdmin, self).save_model(request, obj, form, change)
