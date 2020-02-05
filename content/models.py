@@ -85,14 +85,20 @@ class Product(models.Model):
         verbose_name_plural=("محصولات")
 
 
+# class Variants(models.Model):
+#     category=models.ForeignKey(Category,null=False,related_name='Variants',on_delete=models.CASCADE)
+#     name=models.CharField(max_length=300)
+
 class ProductUnit(models.Model):
     product=models.ForeignKey(Product,related_name='product_unit',on_delete=models.CASCADE)
-
+    variant=JSONField(null=True)
+    variant_title=models.CharField(max_length=255,null=True)
     seller=models.ForeignKey(Supplier,null=False,verbose_name='فروشنده',on_delete=models.CASCADE)
     price=models.PositiveIntegerField(null=False,verbose_name='قیمت')
     storage_count=models.PositiveIntegerField(null=False,verbose_name='تعداد در انبار این فروشگاه')
 
 class Image(models.Model):
+
     product=models.ForeignKey(Product,related_name='images',on_delete=models.CASCADE)
     image_path=models.ImageField(upload_to=settings.PRODUCTIMAGE_PATH)
     is_default_pic = models.BooleanField(default=False)

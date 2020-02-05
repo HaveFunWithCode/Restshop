@@ -14,6 +14,7 @@ jsonschema = "*"
 environ = "*"
 django-environ = "*"
 django-jsonschema-form = "*"
+python-memcached = "*"
 
 [requires]
 python_version = "3.6"
