@@ -232,10 +232,12 @@ class ProductModelAdmin(admin.ModelAdmin):
 
     inlines = [productUnitInline, productImageInline]
 
-    fieldsets = [
-        ('اطلاعات اصلی', {'fields': ['category', 'brand', 'name', 'values','description']}),
+    # fields = "__all__"
 
-    ]
+    # fieldsets = [
+    #     ('اطلاعات اصلی', {'fields': ['category', 'brand', 'name', 'values','description']}),
+    #
+    # ]
     change_form_template="content/my_product_admin.html"
 
     # def get_formsets_with_inlines(self, request, obj=None):

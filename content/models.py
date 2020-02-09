@@ -8,6 +8,7 @@ from django.utils import inspect
 from jsonschema import validate, exceptions as jsonschema_exceptions
 from django.core import exceptions
 from django.contrib.postgres.fields import JSONField
+from django.utils import timezone
 
 class JSONSchemaField(JSONField):
     """ https://gist.githubusercontent.com/saadullahaleem/78603764a19441467e7988c9e5ed8bdf/raw/6bb95f5a531b515fb6a3c9c52933009d4ffe803b/jsonschemafield.py """
@@ -73,6 +74,8 @@ class Product(models.Model):
     name=models.CharField(max_length=255,null=False,blank=False,verbose_name='نام محصول')
     description=models.TextField(max_length=10000,null=True,blank=True,verbose_name='توضیحات')
     category=models.ForeignKey(Category,null=False,verbose_name='دسته',on_delete=models.CASCADE)
+    created_at=models.DateTimeField(auto_now_add=True)
+    modified_at=models.DateTimeField(auto_now=True)
 
     values = JSONField(verbose_name='ویژگی ها')
     brand=models.ForeignKey(Brand,on_delete=models.CASCADE,null=True,verbose_name='برند')
