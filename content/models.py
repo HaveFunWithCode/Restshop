@@ -87,11 +87,6 @@ class Product(models.Model):
         verbose_name=("محصول")
         verbose_name_plural=("محصولات")
 
-
-# class Variants(models.Model):
-#     category=models.ForeignKey(Category,null=False,related_name='Variants',on_delete=models.CASCADE)
-#     name=models.CharField(max_length=300)
-
 class ProductUnit(models.Model):
     product=models.ForeignKey(Product,related_name='product_unit',on_delete=models.CASCADE)
     variant=JSONField(null=True)

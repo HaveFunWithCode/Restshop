@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a66a60ca-c29f-47d9-bd27-39d1507cb306" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attSchemas/25454058.json" beforeDir="false" afterPath="$PROJECT_DIR$/attSchemas/25454058.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/attSchemas/66748228.json" beforeDir="false" afterPath="$PROJECT_DIR$/attSchemas/66748228.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/content/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +51,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../middlewaretest-cachetest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../userManagment" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -61,7 +65,29 @@
       <recent name="$PROJECT_DIR$/content/templates" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.manage">
+    <configuration name="admin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="finalonlineShop" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/content" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/content/admin.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="finalonlineShop" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,7 +102,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-      <option name="PARAMETERS" value="runserver 7002" />
+      <option name="PARAMETERS" value="runserver 8002" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -84,9 +110,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.manage" />
+      <item itemvalue="Python.admin" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.manage" />
+        <item itemvalue="Python.admin" />
       </list>
     </recent_temporary>
   </component>
@@ -121,7 +152,10 @@
       <workItem from="1580848222786" duration="525000" />
       <workItem from="1580883964343" duration="32038000" />
       <workItem from="1581151842300" duration="4061000" />
-      <workItem from="1581270118125" duration="5687000" />
+      <workItem from="1581270118125" duration="17116000" />
+      <workItem from="1581324049110" duration="12352000" />
+      <workItem from="1581650905397" duration="26195000" />
+      <workItem from="1581859789342" duration="1070000" />
     </task>
     <servers />
   </component>
@@ -129,66 +163,83 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="457" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580021314373">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state x="446" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581758796338">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state x="457" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1580021314373" />
-    <state x="793" y="629" width="925" height="451" key="#xdebugger.evaluate" timestamp="1580938541638">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state x="446" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/51.24.1869.1056@51.24.1869.1056" timestamp="1581758796338" />
+    <state x="457" y="197" key="#com.intellij.execution.impl.EditConfigurationsDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1581323101051" />
+    <state x="495" y="489" width="1002" height="591" key="#xdebugger.evaluate" timestamp="1581858052554">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state x="793" y="629" width="925" height="451" key="#xdebugger.evaluate/65.24.1855.1056@65.24.1855.1056" timestamp="1580938541638" />
-    <state width="1203" height="466" key="DebuggerActiveHint" timestamp="1580938558362">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state x="495" y="489" width="1002" height="591" key="#xdebugger.evaluate/51.24.1869.1056@51.24.1869.1056" timestamp="1581858052554" />
+    <state x="869" y="135" width="925" height="945" key="#xdebugger.evaluate/65.24.1855.1056@65.24.1855.1056" timestamp="1581339381917" />
+    <state width="1213" height="466" key="DebuggerActiveHint" timestamp="1581853946079">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1203" height="466" key="DebuggerActiveHint/65.24.1855.1056@65.24.1855.1056" timestamp="1580938558362" />
-    <state x="780" y="297" key="FileChooserDialogImpl" timestamp="1580582223241">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1213" height="466" key="DebuggerActiveHint/51.24.1869.1056@51.24.1869.1056" timestamp="1581853946079" />
+    <state width="1203" height="466" key="DebuggerActiveHint/65.24.1855.1056@65.24.1855.1056" timestamp="1581336771646" />
+    <state x="771" y="297" key="FileChooserDialogImpl" timestamp="1581860208602">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
+    <state x="771" y="297" key="FileChooserDialogImpl/51.24.1869.1056@51.24.1869.1056" timestamp="1581860208602" />
     <state x="780" y="297" key="FileChooserDialogImpl/65.24.1855.1056@65.24.1855.1056" timestamp="1580582223241" />
-    <state width="1809" height="316" key="GridCell.Tab.0.bottom" timestamp="1581149033439">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.0.bottom" timestamp="1581859514620">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033439" />
-    <state width="1809" height="316" key="GridCell.Tab.0.center" timestamp="1581149033432">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.0.bottom/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514620" />
+    <state width="1809" height="316" key="GridCell.Tab.0.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079121" />
+    <state width="1823" height="316" key="GridCell.Tab.0.center" timestamp="1581859514617">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033432" />
-    <state width="1809" height="316" key="GridCell.Tab.0.left" timestamp="1581149033428">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.0.center/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514617" />
+    <state width="1809" height="316" key="GridCell.Tab.0.center/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079120" />
+    <state width="1823" height="316" key="GridCell.Tab.0.left" timestamp="1581859514615">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033428" />
-    <state width="1809" height="316" key="GridCell.Tab.0.right" timestamp="1581149033436">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.0.left/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514615" />
+    <state width="1809" height="316" key="GridCell.Tab.0.left/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079120" />
+    <state width="1823" height="316" key="GridCell.Tab.0.right" timestamp="1581859514619">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033436" />
-    <state width="1809" height="316" key="GridCell.Tab.1.bottom" timestamp="1581149033451">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.0.right/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514619" />
+    <state width="1809" height="316" key="GridCell.Tab.0.right/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079121" />
+    <state width="1823" height="316" key="GridCell.Tab.1.bottom" timestamp="1581859514625">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033451" />
-    <state width="1809" height="316" key="GridCell.Tab.1.center" timestamp="1581149033446">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.1.bottom/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514625" />
+    <state width="1809" height="316" key="GridCell.Tab.1.bottom/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079122" />
+    <state width="1823" height="316" key="GridCell.Tab.1.center" timestamp="1581859514622">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033446" />
-    <state width="1809" height="316" key="GridCell.Tab.1.left" timestamp="1581149033442">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.1.center/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514622" />
+    <state width="1809" height="316" key="GridCell.Tab.1.center/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079121" />
+    <state width="1823" height="316" key="GridCell.Tab.1.left" timestamp="1581859514620">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033442" />
-    <state width="1809" height="316" key="GridCell.Tab.1.right" timestamp="1581149033449">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="1823" height="316" key="GridCell.Tab.1.left/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514620" />
+    <state width="1809" height="316" key="GridCell.Tab.1.left/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079121" />
+    <state width="1823" height="316" key="GridCell.Tab.1.right" timestamp="1581859514623">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="1809" height="316" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1581149033449" />
+    <state width="1823" height="316" key="GridCell.Tab.1.right/51.24.1869.1056@51.24.1869.1056" timestamp="1581859514623" />
+    <state width="1809" height="316" key="GridCell.Tab.1.right/65.24.1855.1056@65.24.1855.1056" timestamp="1581368079121" />
     <state x="781" y="263" key="RollbackChangesDialog" timestamp="1580938928382">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="781" y="263" key="RollbackChangesDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1580938928382" />
-    <state width="927" height="542" key="XDebugger.FullValuePopup" timestamp="1580937590356">
-      <screen x="65" y="24" width="1855" height="1056" />
+    <state width="934" height="542" key="XDebugger.FullValuePopup" timestamp="1581655030009">
+      <screen x="51" y="24" width="1869" height="1056" />
     </state>
-    <state width="927" height="542" key="XDebugger.FullValuePopup/65.24.1855.1056@65.24.1855.1056" timestamp="1580937590356" />
+    <state width="934" height="542" key="XDebugger.FullValuePopup/51.24.1869.1056@51.24.1869.1056" timestamp="1581655030009" />
+    <state width="927" height="542" key="XDebugger.FullValuePopup/65.24.1855.1056@65.24.1855.1056" timestamp="1581328190908" />
     <state x="655" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1580195087157">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
     <state x="655" y="367" key="com.intellij.ide.util.TipDialog/65.24.1855.1056@65.24.1855.1056" timestamp="1580195087157" />
+    <state x="525" y="278" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1581857919534">
+      <screen x="51" y="24" width="1869" height="1056" />
+    </state>
+    <state x="525" y="278" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/51.24.1869.1056@51.24.1869.1056" timestamp="1581857919534" />
     <state x="559" y="237" width="866" height="602" key="find.popup" timestamp="1580328642797">
       <screen x="65" y="24" width="1855" height="1056" />
     </state>
@@ -197,21 +248,24 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+        <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/content/views.py</url>
           <line>58</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/content/admin.py</url>
-          <line>94</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/finalonlineShop$views.coverage" NAME="manage Coverage Results" MODIFIED="1580112476373" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/finalonlineShop$manage.coverage" NAME="manage Coverage Results" MODIFIED="1580939787743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/finalonlineShop$admin.coverage" NAME="admin Coverage Results" MODIFIED="1581336146264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/content" />
+    <SUITE FILE_PATH="coverage/finalonlineShop$manage.coverage" NAME="manage Coverage Results" MODIFIED="1581857894982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
