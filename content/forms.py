@@ -17,7 +17,7 @@ class AttribiutForm(forms.Form):
         ('string','متنی'),
         ('number','عدد'),
         ('boolean','صفر و یک '),
-
+        ('enum','چند مقداری ')
     )
 
 
@@ -30,6 +30,7 @@ class AttribiutForm(forms.Form):
         })
     )
     att_type=forms.MultipleChoiceField(choices=type_choices)
+
 
 
 
