@@ -2,7 +2,7 @@ import json
 import os
 
 from django.db import models
-from users.models import Supplier
+from users.models import SupplierUser
 from django.conf import settings
 from django.utils import inspect
 from jsonschema import validate, exceptions as jsonschema_exceptions
@@ -91,7 +91,7 @@ class ProductUnit(models.Model):
     product=models.ForeignKey(Product,related_name='product_unit',on_delete=models.CASCADE)
     variant=JSONField(null=True)
     variant_title=models.CharField(max_length=255,null=True)
-    seller=models.ForeignKey(Supplier,null=False,verbose_name='فروشنده',on_delete=models.CASCADE)
+    seller=models.ForeignKey(SupplierUser,null=False,verbose_name='فروشنده',on_delete=models.CASCADE)
     price=models.PositiveIntegerField(null=False,verbose_name='قیمت')
     storage_count=models.PositiveIntegerField(null=False,verbose_name='تعداد در انبار این فروشگاه')
 

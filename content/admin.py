@@ -2,7 +2,7 @@ import json
 from django import forms
 from django.contrib import admin
 from jsonschemaform.admin.widgets.jsonschema_widget import JSONSchemaWidget
-from .models import Category, Product, Type, Brand, ProductUnit, Supplier, Image
+from .models import Category, Product, Type, Brand, ProductUnit, SupplierUser, Image
 
 
 class productImageInline(admin.StackedInline):
@@ -10,9 +10,10 @@ class productImageInline(admin.StackedInline):
     extra = 1
     verbose_name='افزودن تصاویر'
     verbose_name_plural='تصاویر محصول'
-    fieldsets = [
-        ('افزودن تصویر',{'fields':['image_path','is_default_pic'],'classes': ['collapse']})
-    ]
+    # fieldsets = [
+    #     ('افزودن تصویر',{'fields':['image_path','is_default_pic'],
+    #                      'classes': ['collapse']})
+    # ]
 
 
 class CategoryAdminForm(forms.ModelForm):
@@ -142,4 +143,4 @@ class ProductModelAdmin(admin.ModelAdmin):
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Type)
 admin.site.register(Brand)
-admin.site.register(Supplier)
+admin.site.register(SupplierUser)
