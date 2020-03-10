@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from .forms import AttribiutFormSet,Catform
@@ -113,6 +114,9 @@ def get_brands(request):
 
 class ProductListViewSet(viewsets.ViewSet):
 
+    # rate limmit for acessing this api
+    throttle_classes = (ScopedRateThrottle,)
+    throttle_scope = 'list-product'
 
     def list(self, request):
 
@@ -133,6 +137,7 @@ class ProductListViewSet(viewsets.ViewSet):
 
 # TODO: list product by category| search based on category values  shcema
 # TODO: list prouct sort by (price|num of orders)
+# TODO: add rate limit on search for anon by scop 'search-category'
 
 
 
