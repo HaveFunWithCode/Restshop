@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from cart.cart import Cart
@@ -11,7 +12,9 @@ class CartView(APIView):
     # show cart
     def get(self, request):
         # get cart content from database if exist
-        pass
+        cart=Cart(request=request)
+        # TODO: test current request test is changes or not
+        return Response({'cart':cart})
 
     # add to cart
     def post(self,request,product_unit_id,quantity=None):
