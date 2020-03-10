@@ -12,12 +12,15 @@ class CartView(APIView):
     # show cart
     def get(self, request):
         # get cart content from database if exist
-        cart=Cart(request=request)
+        requestCart=Cart(request=request)
         # TODO: test current request test is changes or not
-        return Response({'cart':cart})
+        return Response({'cart':requestCart.cart,'messages':requestCart.availability_message})
 
     # add to cart
     def post(self,request,product_unit_id,quantity=None):
+        # check product unit availability if not return error or exeption
+        requestCart = Cart(request=request)
+        requestCart.add_to_cart(product_unit_id,quantity)
 
 
         pass
