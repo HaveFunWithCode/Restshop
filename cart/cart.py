@@ -10,7 +10,7 @@ class Cart(object):
     def __get_product_unit_count(self,pid):
         product_unit = ProductUnit.objects.all().filter(id=pid)
         if product_unit:
-            return product_unit.storage_count
+            return product_unit[0].storage_count
         else:
             # no such produt_unit_available
             return None
@@ -18,7 +18,9 @@ class Cart(object):
 
         self.availability_message={}
         for product_unit_id, quantity in session_cart.items():
-            self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
+            storage_count=self.__get_product_unit_count(product_unit_id)
+            if storage_count is None or storage_count < quantity :
+                self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
 
             # product_unit=ProductUnit.objects.all().filter(id=product_unit_id)
             # if product_unit:
@@ -30,7 +32,7 @@ class Cart(object):
 
     def __init__(self,request):
         # check is user authenticated or not
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             # request db to get  abandoned items in last login
             last_login_cart_session=ShoppingCart.objests.all.filter(customer=request.user)
             if last_login_cart_session:
@@ -42,9 +44,9 @@ class Cart(object):
             self.session=request.session
             self.session[settings.CART_SESSION_ID]={}
             for product_unit_id,quantity in new_session_cart.items():
-                if product_unit_id in last_login_cart_session:
+                if product_unit_id in last_session_cart:
                     # update current session with new quantity
-                    del last_login_cart_session[product_unit_id]
+                    del last_session_cart[product_unit_id]
                     self.session[settings.CART_SESSION_ID][product_unit_id]=new_session_cart[product_unit_id]
 
             # check product availability &&
@@ -78,33 +80,42 @@ class Cart(object):
         del self.session[settings.CART_SESSION_ID]
         self.save()
 
-    def add_to_cart(self,product_unit,quantity=1,update_quantity=False):
-        # TODO: MUST test
-        if product_unit.id not in self.cart:
-            # self.__get_product_unit_count(product_unit.id)
-            self.availability_message[product_unit.id] = self.__get_product_unit_count(product_unit.id) or -1
-            # if this product_unit has no error
-            if product_unit.id not in self.availability_message:
-                self.cart[product_unit.id]={'quantity':quantity}
-        if update_quantity:
-            # self.__get_product_unit_count(product_unit.id)
-            self.availability_message[product_unit.id] = self.__get_product_unit_count(product_unit.id) or -1
-            # if this product_unit has no error
-            if product_unit.id not in self.availability_message:
-                self.cart[product_unit.id]['quantity']=quantity
+    def add_to_cart(self, product_unit_id, quantity=1, update_quantity=False):
+        self.availability_message = {}
+        storage_count = self.__get_product_unit_count(product_unit_id)
+        # if storage_count is None or storage_count < quantity:
+        #     self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
+        # if this product_unit has no error
+        if product_unit_id not in self.availability_message:
 
-        else:
-            # self.__get_product_unit_count(product_unit.id)
-            self.availability_message[product_unit.id] = self.__get_product_unit_count(product_unit.id) or -1
-            # if this product_unit has no error
-            if product_unit.id not in self.availability_message:
-                self.cart[product_unit.id]['quantity']+=quantity
 
-        self.save()
+            if str(product_unit_id) not in self.cart:
+                if storage_count is None or storage_count < quantity:
+                    self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
+                else:
+                    price = ProductUnit.objects.all().filter(id=product_unit_id)[0].price
+                    self.cart[str(product_unit_id)]={'quantity':quantity,'price':price}
+            if update_quantity:
+                if storage_count is None or storage_count < quantity:
+                    self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
+                else:
+                    price = ProductUnit.objects.all().filter(id=product_unit_id)[0].price
+                    self.cart[str(product_unit_id)]['quantity'] = quantity
+                    self.cart[str(product_unit_id)]['price'] = price
 
-    def remove_from_cart(self,prodcut_unit):
-        if str(prodcut_unit.id) in self.cart:
-            del self.cart[prodcut_unit.id]
+            else:
+                if storage_count is None or storage_count < quantity+self.cart[str(product_unit_id)]['quantity']:
+                    self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
+                else:
+                    price = ProductUnit.objects.all().filter(id=product_unit_id)[0].price
+                    self.cart[str(product_unit_id)]['quantity']+=quantity
+                    self.cart[str(product_unit_id)]['price']=price
+
+            self.save()
+
+    def remove_from_cart(self,product_unit):
+        if str(product_unit.id) in self.cart:
+            del self.cart[str(product_unit.id)]
             self.save()
     def save(self):
         self.session.modified = True
