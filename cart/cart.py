@@ -10,16 +10,21 @@ class Cart(object):
     def __get_product_unit_count(self,pid):
         product_unit = ProductUnit.objects.all().filter(id=pid)
         if product_unit:
+            # update price if exist from last session
+            if str(pid) in self.session[settings.CART_SESSION_ID]:
+                self.session[settings.CART_SESSION_ID][str(pid)]['price'] = product_unit[0].price
             return product_unit[0].storage_count
         else:
             # no such produt_unit_available
             return None
+
+
     def __check_product_availability(self,session_cart):
 
         self.availability_message={}
-        for product_unit_id, quantity in session_cart.items():
+        for product_unit_id, attrs in session_cart.items():
             storage_count=self.__get_product_unit_count(product_unit_id)
-            if storage_count is None or storage_count < quantity :
+            if storage_count is None or storage_count < attrs['quantity'] :
                 self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
 
             # product_unit=ProductUnit.objects.all().filter(id=product_unit_id)
@@ -55,7 +60,7 @@ class Cart(object):
             self.__check_product_availability(self.session[settings.CART_SESSION_ID])
             if len(self.availability_message)>0:
                 for puid,avilable_quantitly  in self.availability_message:
-                    self.session[settings.CART_SESSION_ID][puid] = avilable_quantitly
+                    self.session[settings.CART_SESSION_ID][puid]['quantity'] = avilable_quantitly
 
             # add remained product in last_session_cart to current session
             # update request.session
@@ -65,9 +70,20 @@ class Cart(object):
 
         else:
             self.session = request.session
+
             cart = self.session.get(settings.CART_SESSION_ID)
             if not cart:
                 cart = self.session[settings.CART_SESSION_ID] = {}
+            else:
+                # check product availability &&
+                # update number of item if not available anymore to zero( to show unavailability) or decrease to the highest possible number
+                # in  delayed shipping this check is needed
+                self.__check_product_availability(self.session[settings.CART_SESSION_ID])
+                if len(self.availability_message) > 0:
+                    for puid, avilable_quantitly in self.availability_message.items():
+                        self.session[settings.CART_SESSION_ID][puid]['quantity'] = avilable_quantitly
+                    cart = self.session[settings.CART_SESSION_ID]
+
             self.cart = cart
 
     def __len__(self):
