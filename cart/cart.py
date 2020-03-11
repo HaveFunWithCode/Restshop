@@ -114,6 +114,7 @@ class Cart(object):
             self.save()
 
     def remove_from_cart(self,product_unit):
+        # TODO: check nmber of item you wanna remove |MUST MODIFY
         if str(product_unit.id) in self.cart:
             del self.cart[str(product_unit.id)]
             self.save()
