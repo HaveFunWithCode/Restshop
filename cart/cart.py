@@ -5,7 +5,7 @@ from content.models import ProductUnit
 from .models import ShoppingCart
 
 
-# TODO: remove item
+
 # TODO: show name of product in shopping cart
 class Cart(object):
     def __get_product_unit_count(self,pid):
@@ -123,11 +123,15 @@ class Cart(object):
 
             self.save()
 
-    def remove_from_cart(self,product_unit):
-        # TODO: check nmber of item you wanna remove |MUST MODIFY
-        if str(product_unit.id) in self.cart:
-            del self.cart[str(product_unit.id)]
+    def remove_from_cart(self,product_unit_id):
+
+        if str(product_unit_id) in self.cart:
+            if int(self.cart[str(product_unit_id)]['quantity']) > 1:
+                self.cart[str(product_unit_id)]['quantity'] = int(self.cart[str(product_unit_id)]['quantity']) - 1
+            else:
+                del self.cart[str(product_unit_id)]
             self.save()
+
     def save(self):
         self.session.modified = True
         if self.request.user.is_authenticated:

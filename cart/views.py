@@ -21,12 +21,12 @@ class CartView(APIView):
         # check product unit availability if not return error or exeption
         requestCart = Cart(request=request)
         requestCart.add_to_cart(product_unit_id,quantity or 1)
-        return Response({'cart': requestCart.cart, 'messages': requestCart.availability_message})
+        return Response({'cart': requestCart.cart, 'messages': getattr(requestCart,'availability_message',''),'total_price':requestCart.get_total_price()})
 
-    # def remove(self,request,product_unit_id):
-    #     requestCart = Cart(request=request)
-    #     requestCart.remove_from_cart(product_unit_id)
-    #     return Response({'cart' :requestCart.cart, 'messages': requestCart.availability_message})
+    def delete(self,request,product_unit_id):
+        requestCart = Cart(request=request)
+        requestCart.remove_from_cart(product_unit_id)
+        return Response({'cart' :requestCart.cart, 'messages': getattr(requestCart,'availability_message',''),'total_price':requestCart.get_total_price()})
 
 
 
