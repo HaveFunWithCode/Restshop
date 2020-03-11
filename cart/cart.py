@@ -5,7 +5,8 @@ from content.models import ProductUnit
 from .models import ShoppingCart
 
 
-
+# TODO: remove item
+# TODO: show name of product in shopping cart
 class Cart(object):
     def __get_product_unit_count(self,pid):
         product_unit = ProductUnit.objects.all().filter(id=pid)
@@ -27,46 +28,42 @@ class Cart(object):
             if storage_count is None or storage_count < attrs['quantity'] :
                 self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
 
-            # product_unit=ProductUnit.objects.all().filter(id=product_unit_id)
-            # if product_unit:
-            #     if quantity>product_unit.storage_count:
-            #         self.availability_message[product_unit_id]=product_unit.storage_count
-            # else:
-            #     # no such produt_unit_available
-            #     self.availability_message[product_unit_id]=-1
 
     def __init__(self,request):
+        self.request=request
         # check is user authenticated or not
         if request.user.is_authenticated:
             # request db to get  abandoned items in last login
-            last_login_cart_session=ShoppingCart.objests.all.filter(customer=request.user)
-            if last_login_cart_session:
-                last_session_cart=last_login_cart_session.get(settings.CART_SESSION_ID)
+            last_login_cart_session = ShoppingCart.objects.all().filter(customer=request.user)
+            last_session_cart = last_login_cart_session[0].cart_session if last_login_cart_session else {}
+            new_session_cart = request.session.get(settings.CART_SESSION_ID) or {}
 
-
-            new_session_cart=request.session.get(settings.CART_SESSION_ID)
             # merge two session with new added item (dupplicated item quantity will updated with new quantity)
             self.session=request.session
-            self.session[settings.CART_SESSION_ID]={}
-            for product_unit_id,quantity in new_session_cart.items():
-                if product_unit_id in last_session_cart:
-                    # update current session with new quantity
-                    del last_session_cart[product_unit_id]
-                    self.session[settings.CART_SESSION_ID][product_unit_id]=new_session_cart[product_unit_id]
+            # self.session[settings.CART_SESSION_ID]= {}
+            if new_session_cart:
+                for product_unit_id,attrs in new_session_cart.items():
+                    if product_unit_id in last_session_cart:
+                        # update current session with new quantity
+                        del last_session_cart[product_unit_id]
+                        self.session[settings.CART_SESSION_ID][product_unit_id]=new_session_cart[product_unit_id]
+
+                self.session[settings.CART_SESSION_ID]={ **last_session_cart , **self.session[settings.CART_SESSION_ID] ,**new_session_cart}
+            else:
+                self.session[settings.CART_SESSION_ID] = last_session_cart
 
             # check product availability &&
             # update number of item if not available anymore to zero( to show unavailability) or decrease to the highest possible number
             # TODO: this part of code MUST TEST with different situation
             self.__check_product_availability(self.session[settings.CART_SESSION_ID])
             if len(self.availability_message)>0:
-                for puid,avilable_quantitly  in self.availability_message:
+                for puid,avilable_quantitly  in self.availability_message.items():
                     self.session[settings.CART_SESSION_ID][puid]['quantity'] = avilable_quantitly
 
             # add remained product in last_session_cart to current session
             # update request.session
             # TODO: this part of code MUST TEST with different situation
-            request.session=self.cart=self.session[settings.CART_SESSION_ID]={**self.session[settings.CART_SESSION_ID] ,**last_login_cart_session }
-
+            request.session=self.cart=self.session[settings.CART_SESSION_ID]
 
         else:
             self.session = request.session
@@ -99,9 +96,6 @@ class Cart(object):
     def add_to_cart(self, product_unit_id, quantity=1, update_quantity=False):
         self.availability_message = {}
         storage_count = self.__get_product_unit_count(product_unit_id)
-        # if storage_count is None or storage_count < quantity:
-        #     self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
-        # if this product_unit has no error
         if product_unit_id not in self.availability_message:
 
 
@@ -136,6 +130,10 @@ class Cart(object):
             self.save()
     def save(self):
         self.session.modified = True
+        if self.request.user.is_authenticated:
+            shopcart=ShoppingCart(customer=self.request.user,
+                                  cart_session=self.session[settings.CART_SESSION_ID])
+            shopcart.save()
 
 
     # def __iter__(self):
