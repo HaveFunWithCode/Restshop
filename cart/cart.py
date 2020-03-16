@@ -5,10 +5,9 @@ from content.models import ProductUnit
 from .models import ShoppingCart
 
 
-
 # TODO: show name of product in shopping cart
 class Cart(object):
-    def __get_product_unit_count(self,pid):
+    def __get_product_unit_count(self, pid):
         product_unit = ProductUnit.objects.all().filter(id=pid)
         if product_unit:
             # update price if exist from last session
@@ -19,18 +18,16 @@ class Cart(object):
             # no such produt_unit_available
             return None
 
+    def __check_product_availability(self, session_cart):
 
-    def __check_product_availability(self,session_cart):
-
-        self.availability_message={}
+        self.availability_message = {}
         for product_unit_id, attrs in session_cart.items():
-            storage_count=self.__get_product_unit_count(product_unit_id)
-            if storage_count is None or storage_count < attrs['quantity'] :
+            storage_count = self.__get_product_unit_count(product_unit_id)
+            if storage_count is None or storage_count < attrs['quantity']:
                 self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
 
-
-    def __init__(self,request):
-        self.request=request
+    def __init__(self, request):
+        self.request = request
         # check is user authenticated or not
         if request.user.is_authenticated:
             # request db to get  abandoned items in last login
@@ -39,16 +36,17 @@ class Cart(object):
             new_session_cart = request.session.get(settings.CART_SESSION_ID) or {}
 
             # merge two session with new added item (dupplicated item quantity will updated with new quantity)
-            self.session=request.session
+            self.session = request.session
             # self.session[settings.CART_SESSION_ID]= {}
             if new_session_cart:
-                for product_unit_id,attrs in new_session_cart.items():
+                for product_unit_id, attrs in new_session_cart.items():
                     if product_unit_id in last_session_cart:
                         # update current session with new quantity
                         del last_session_cart[product_unit_id]
-                        self.session[settings.CART_SESSION_ID][product_unit_id]=new_session_cart[product_unit_id]
+                        self.session[settings.CART_SESSION_ID][product_unit_id] = new_session_cart[product_unit_id]
 
-                self.session[settings.CART_SESSION_ID]={ **last_session_cart , **self.session[settings.CART_SESSION_ID] ,**new_session_cart}
+                self.session[settings.CART_SESSION_ID] = {**last_session_cart, **self.session[settings.CART_SESSION_ID],
+                                                          **new_session_cart}
             else:
                 self.session[settings.CART_SESSION_ID] = last_session_cart
 
@@ -56,14 +54,14 @@ class Cart(object):
             # update number of item if not available anymore to zero( to show unavailability) or decrease to the highest possible number
             # TODO: this part of code MUST TEST with different situation
             self.__check_product_availability(self.session[settings.CART_SESSION_ID])
-            if len(self.availability_message)>0:
-                for puid,avilable_quantitly  in self.availability_message.items():
+            if len(self.availability_message) > 0:
+                for puid, avilable_quantitly in self.availability_message.items():
                     self.session[settings.CART_SESSION_ID][puid]['quantity'] = avilable_quantitly
 
             # add remained product in last_session_cart to current session
             # update request.session
             # TODO: this part of code MUST TEST with different situation
-            request.session=self.cart=self.session[settings.CART_SESSION_ID]
+            request.session = self.cart = self.session[settings.CART_SESSION_ID]
 
         else:
             self.session = request.session
@@ -87,7 +85,7 @@ class Cart(object):
         return sum(cartItem['quantity'] for cartItem in self.cart.values())
 
     def get_total_price(self):
-        return sum(Decimal(cartItem['price']*cartItem['quantity']) for cartItem in self.cart.values())
+        return sum(Decimal(cartItem['price'] * cartItem['quantity']) for cartItem in self.cart.values())
 
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
@@ -98,13 +96,12 @@ class Cart(object):
         storage_count = self.__get_product_unit_count(product_unit_id)
         if product_unit_id not in self.availability_message:
 
-
             if str(product_unit_id) not in self.cart:
                 if storage_count is None or storage_count < quantity:
                     self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
                 else:
                     price = ProductUnit.objects.all().filter(id=product_unit_id)[0].price
-                    self.cart[str(product_unit_id)]={'quantity':quantity,'price':price}
+                    self.cart[str(product_unit_id)] = {'quantity': quantity, 'price': price}
             if update_quantity:
                 if storage_count is None or storage_count < quantity:
                     self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
@@ -114,16 +111,16 @@ class Cart(object):
                     self.cart[str(product_unit_id)]['price'] = price
 
             else:
-                if storage_count is None or storage_count < quantity+self.cart[str(product_unit_id)]['quantity']:
+                if storage_count is None or storage_count < quantity + self.cart[str(product_unit_id)]['quantity']:
                     self.availability_message[product_unit_id] = self.__get_product_unit_count(product_unit_id) or -1
                 else:
                     price = ProductUnit.objects.all().filter(id=product_unit_id)[0].price
-                    self.cart[str(product_unit_id)]['quantity']+=quantity
-                    self.cart[str(product_unit_id)]['price']=price
+                    self.cart[str(product_unit_id)]['quantity'] += quantity
+                    self.cart[str(product_unit_id)]['price'] = price
 
             self.save()
 
-    def remove_from_cart(self,product_unit_id):
+    def remove_from_cart(self, product_unit_id):
 
         if str(product_unit_id) in self.cart:
             if int(self.cart[str(product_unit_id)]['quantity']) > 1:
@@ -135,19 +132,7 @@ class Cart(object):
     def save(self):
         self.session.modified = True
         if self.request.user.is_authenticated:
-            shopcart=ShoppingCart(customer=self.request.user,
-                                  cart_session=self.session[settings.CART_SESSION_ID])
+            shopcart = ShoppingCart(customer=self.request.user,
+                                    cart_session=self.session[settings.CART_SESSION_ID])
             shopcart.save()
-
-
-    # def __iter__(self):
-    #     # add actual product to cart to show to us and calculate total price per product
-    #     product_unit_ids = self.cart.keys()
-    #     products=ProductUnit.objects.filter(id__in=product_unit_ids).\
-    #         prefetch_related('id_product_unit_set')
-    #     cart = self.cart.copy()
-    #     # for product in products:
-    #     #     cart[str(product.)]['product_unit']=product_unit.product
-    #     #
-    #     # for item in cart.values():
 

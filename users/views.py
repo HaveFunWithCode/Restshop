@@ -17,6 +17,7 @@ from .serializers import RegisterSerializer, LoginSerilizer, CustomerProfileSeri
 class RegisterView(CreateAPIView):
     serializer_class=RegisterSerializer
 
+
 class ProfileView(APIView):
     # TODO: edit profile
     permission_classes =[IsAuthenticated]

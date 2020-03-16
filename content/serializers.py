@@ -10,8 +10,6 @@ class ProductUnitSerializer(ModelSerializer):
         model=ProductUnit
         fields='__all__'
 
-
-
 # product list with minimum specification
 class ProductListSerializer(ModelSerializer):
     brand_name = serializers.ReadOnlyField(source='brand.brand_name')
