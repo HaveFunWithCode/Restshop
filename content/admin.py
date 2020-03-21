@@ -5,7 +5,14 @@ from jsonschemaform.admin.widgets.jsonschema_widget import JSONSchemaWidget
 from .models import Category, Product, Type, Brand, ProductUnit, SupplierUser, Image
 
 
-class productImageInline(admin.StackedInline):
+class LoadShemaMixin(object):
+    def load_schema(self,cat_id):
+        DATA_SCHEMA_name = Category.objects.values_list('attributes_Schema_name', flat=True).get(id=int(cat_id))
+        with open("attSchemas/{0}".format(DATA_SCHEMA_name)) as jfile:
+            return json.load(jfile)
+
+
+class ProductImageInline(admin.StackedInline):
     model = Image
     extra = 1
     verbose_name = 'افزودن تصاویر'
@@ -15,7 +22,7 @@ class productImageInline(admin.StackedInline):
 class CategoryAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CategoryAdminForm, self).__init__(*args, **kwargs)
-        self.fields['type'].widget = JSONSchemaWidget()
+        self.fields['type'].widget = JSONSchemaWidget(None)
 
     class Meta:
         model = Category
@@ -29,12 +36,12 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class VariantsWidget(forms.MultiWidget):
 
-    def __init__(self, dict, attrs=None):
-        w = []
+    def __init__(self, varDict, attrs=None):
+        widgetsList = []
 
-        for key, val in dict.items():
-            w.append(forms.Select(choices=tuple([(val, val) for val in val]), attrs={'name': key}))
-        widgets = tuple(w)
+        for key, val in varDict.items():
+            widgetsList.append(forms.Select(choices=tuple([(val, val) for val in val]), attrs={'name': key}))
+        widgets = tuple(widgetsList)
         super(VariantsWidget, self).__init__(widgets, attrs)
 
     # decompress jsonfiled
@@ -48,19 +55,13 @@ class VariantsWidget(forms.MultiWidget):
     def value_from_datadict(self, data, files, name):
 
         variants = dict()
-        for i, widget in enumerate(self.widgets):
+        for _, widget in enumerate(self.widgets):
             variants[widget.attrs['name']] = super(VariantsWidget, self).value_from_datadict(data, files, name)[0]
         if len(variants.values()) > 0:
             return json.dumps(variants)
 
 
-def load_schema(cat_id):
-    DATA_SCHEMA_name = Category.objects.values_list('attributes_Schema_name', flat=True).get(id=int(cat_id))
-    with open("attSchemas/{0}".format(DATA_SCHEMA_name)) as jfile:
-        return json.load(jfile)
-
-
-class productUnitJsonForm(forms.ModelForm):
+class productUnitJsonForm(forms.ModelForm, LoadShemaMixin):
 
     def __init__(self, *args, **kwargs):
 
@@ -71,7 +72,7 @@ class productUnitJsonForm(forms.ModelForm):
             first_cat_row = Category.objects.values_list('id', flat=True).first()
             cat_id = kwargs.get('instance').product.category_id if 'instance' in kwargs else first_cat_row
 
-        DATA_SCHEMA = load_schema(cat_id)
+        DATA_SCHEMA = self.load_schema(cat_id)
         enumfields = [[a, DATA_SCHEMA["properties"][a]['enum']] for a in DATA_SCHEMA["properties"] if
                       'enum' in DATA_SCHEMA["properties"][a]]
 
@@ -98,7 +99,7 @@ class productUnitInline(admin.StackedInline):
 # TODO: add validation to product filed
 # TODO: add variations to product filed
 #
-class ProductJSONModelAdminForm(forms.ModelForm):
+class ProductJSONModelAdminForm(forms.ModelForm,LoadShemaMixin):
 
     def __init__(self, *args, request=None, **kwargs):
         # load schema based on cat seleted
@@ -109,7 +110,7 @@ class ProductJSONModelAdminForm(forms.ModelForm):
             cat_id = int(kwargs.get('initial')['catid']) if 'initial' in kwargs and 'catid' in kwargs.get(
                 'initial') else (
                 int(args[0].get('category')) if len(args) > 0 and 'category' in args[0] else first_cat_row)
-        DATA_SCHEMA = load_schema(cat_id)
+        DATA_SCHEMA = self.load_schema(cat_id)
 
         super().__init__(*args, **kwargs)
 
@@ -126,7 +127,7 @@ class ProductJSONModelAdminForm(forms.ModelForm):
 class ProductModelAdmin(admin.ModelAdmin):
     list_display = ['name', 'category', 'id']
     form = ProductJSONModelAdminForm
-    inlines = [productUnitInline, productImageInline]
+    inlines = [productUnitInline, ProductImageInline]
     change_form_template = "content/my_product_admin.html"
 
     def save_model(self, request, obj, form, change):
