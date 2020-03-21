@@ -10,6 +10,7 @@ from .models import CustomerProfile
 @receiver(post_save, sender=ShopUser)
 def update_user_profile(sender, instance, created, **kwargs):
     if created:
-        CustomerProfile.objects.create(user=instance)
-        Token.objects.create(user=instance)
-    instance.customerProfile.save()
+        if not instance.is_superuser:
+            CustomerProfile.objects.create(user=instance)
+            Token.objects.create(user=instance)
+        instance.customerProfile.save()
