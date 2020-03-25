@@ -1,8 +1,10 @@
 shop/settings.py
 content/__pycache__/*
+users/__pycache__/*
 .idea/
 Pipfile.lock
 Pipfile
+
 
 
 

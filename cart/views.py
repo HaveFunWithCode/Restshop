@@ -10,7 +10,7 @@ class CartView(APIView):
     permission_classes = [AllowAny]
 
     # show cart
-    def get(self, request,):
+    def get(self, request):
         # get cart content from database if exist
         requestCart=Cart(request=request)
         # TODO: test current request test is changes or not

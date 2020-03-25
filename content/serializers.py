@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, JSONField, HyperlinkedModelSerializer, ListSerializer
 from rest_framework import serializers
-from .models import Product, ProductUnit
+from content.models import Product, ProductUnit
 
 
 class ProductUnitSerializer(ModelSerializer):

@@ -13,6 +13,7 @@ urlpatterns = [
     path('login/',LoginAPIView.as_view(),name='login'),
     path('logout/',logoutView.as_view(),name='logout'),
     path('profile/',ProfileView.as_view(),name='profile'),
+    # path('profile/orders',ProfileView.as_view(),name='orders'),
 
 ]
 urlpatterns+=routers.urls
