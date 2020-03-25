@@ -1,4 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.http import Http404
+from django.shortcuts import redirect
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView
@@ -29,7 +32,6 @@ class ProfileView(APIView):
 
 class AddressViewSet(ModelViewSet):
     serializer_class = AddressSerializer
-    # TODO: should change and each user access just to her own address   https://django-rest-delegated-permissions.readthedocs.io/en/latest/
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
         return Adress.objects.filter(user=self.request.user)
@@ -61,6 +63,37 @@ class logoutView(APIView):
     def post(self,request):
         logout(request)
         return Response(data={'success':'Sucessfully logged out'},status=status.HTTP_200_OK)
+
+
+def verifyemail(request, uuid):
+    try:
+        user = ShopUser.objects.get(verification_uuid=uuid, is_verified=False)
+    except ShopUser.DoesNotExist:
+        raise Http404("User does not exist or is already verified")
+    user.is_verified = True
+    user.save()
+    return redirect('profile')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

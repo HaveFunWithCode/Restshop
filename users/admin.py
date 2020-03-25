@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext_lazy as _
 
 from .models import ShopUser, Adress
 
@@ -14,9 +14,11 @@ class ShopUserAdmin(UserAdmin):
 
     fieldsets = (
         (None,{'fields':('email', 'password')}),
-        (ugettext_lazy('Personal info'),{'fields':('first_name','last_name')}),
-        (ugettext_lazy('Permissions'),{'fields':('is_active','is_staff','is_superuser','groups','user_permissions')}),
-        (ugettext_lazy('Important dates'),{'fields':('last_login','date_joined')}),
+        (_('Personal info'),{'fields':('first_name','last_name')}),
+        (_('Confirmation info'), {'fields': ('is_verified',)}),
+        (_('Permissions'),{'fields':('is_active','is_staff','is_superuser','groups','user_permissions')}),
+        (_('Important dates'),{'fields':('last_login','date_joined')}),
+
     )
     add_fieldsets =(
         (None,{

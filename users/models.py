@@ -1,7 +1,9 @@
+import uuid
+
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext_lazy as _
 
 class UserManager(BaseUserManager):
     """ A user manager for the user model with email as username"""
@@ -10,7 +12,9 @@ class UserManager(BaseUserManager):
 
     def _create_user(self, email, password,**extra_fields):
         if not email:
-            raise ValueError('وارد کردن ایمیل اجباری است')
+            raise ValueError(_('Email address must be provided'))
+        if not password:
+            raise ValueError(_('Password must be provided'))
         email = self.normalize_email(email)
         user=self.model(email=email,**extra_fields)
         user.set_password(password)
@@ -35,18 +39,21 @@ class UserManager(BaseUserManager):
    
 class ShopUser(AbstractUser):
     """ Custom user model to accept email as username"""
-    username = None
-    email = models.EmailField(ugettext_lazy('email address'),unique=True)
-
-    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'email'
+
+
+    username = None
+    email = models.EmailField(_('email address'),unique=True, blank=False, null=False)
+    is_active = models.BooleanField('active', default=True)
+    is_verified = models.BooleanField('verified', default=False)  # Add the `is_verified` flag
+    verification_uuid = models.UUIDField('Unique Verification UUID', default=uuid.uuid4)
+
 
     objects = UserManager()
 
     def __str__(self):
-        return f"{self.email}"
-
-
+        return self.email
 
 
 class SupplierUser(models.Model):
