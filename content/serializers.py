@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, JSONField, HyperlinkedModelSerializer, ListSerializer
 from rest_framework import serializers
-from content.models import Product, ProductUnit
+from content.models import Product, ProductUnit, Category
 
 
 class ProductUnitSerializer(ModelSerializer):
@@ -25,6 +25,11 @@ class ProductListSerializer(ModelSerializer):
         model = Product
         fields = ('id', 'name', 'category','category_name', 'brand', 'brand_name', 'main_image')
 
+
+class CategortListSerilizer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = "__all__"
 
 class ProductDetaileSerializer(ModelSerializer):
     brand_name=serializers.ReadOnlyField(source='brand.brand_name')

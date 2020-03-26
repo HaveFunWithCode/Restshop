@@ -2,7 +2,7 @@ import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
@@ -14,7 +14,8 @@ from genson import SchemaBuilder
 from .models import Category, Type, Brand, Product
 import hashlib
 from .serializers import (ProductListSerializer,
-                          ProductDetaileSerializer)
+                          ProductDetaileSerializer,
+                          CategortListSerilizer)
 
 from rest_framework import viewsets
 from .permissions import IsSupplierOrAdminOrReadonly
@@ -135,11 +136,19 @@ class ProductListViewSet(viewsets.ViewSet):
 
 
 
-# TODO: list product by category| search based on category values  shcema
+
 # TODO: list prouct sort by (price|num of orders)
 # TODO: add rate limit on search for anon by scop 'search-category'
 
 
+class CategoryListViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        queryset = Category.objects.all()
+        serilizer = CategortListSerilizer(queryset,many=True)
+        return Response(serilizer.data)
+    def retrieve(self, request, pk=None):
+        return redirect('search',catid=pk)
 
 
 
