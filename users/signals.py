@@ -6,6 +6,7 @@ from .tasks import send_verification_email
 from .models import CustomerProfile
 from .models import ShopUser
 from cart.models import ShoppingCart
+from datetime import datetime, timedelta
 
 
 
@@ -16,7 +17,9 @@ def update_user_profile(sender, instance, created, **kwargs):
             CustomerProfile.objects.create(user=instance)
             ShoppingCart.objects.create(customer=instance).save()
             Token.objects.create(user=instance)
+
             if not instance.is_verified:
-                send_verification_email.delay(instance.pk)
-        instance.customerProfile.save()
+                _20secondlater= datetime.utcnow() + timedelta(seconds=20)
+                send_verification_email.apply_async((instance.pk,),eta=_20secondlater)
+        # instance.customerProfile.save()
 
