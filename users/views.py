@@ -47,7 +47,7 @@ class AddressViewSet(ModelViewSet):
         return Response(serializer.data,
                         status=status.HTTP_201_CREATED,
                         headers=headers)
-
+# TODO: should add check is_verified before login
 class LoginAPIView(APIView):
     serializer_class=LoginSerilizer
     def post(self,request):
