@@ -87,11 +87,12 @@ class Product(models.Model):
         verbose_name=("محصول")
         verbose_name_plural=("محصولات")
 
+# TODO:  seller on_delete should change as showing the name of seller after delete
 class ProductUnit(models.Model):
     product = models.ForeignKey(Product,related_name='product_unit',on_delete=models.CASCADE)
     variant = JSONField(null=True)
     variant_title = models.CharField(max_length=255,null=True)
-    seller = models.ForeignKey(SupplierUser,null=False,verbose_name='فروشنده',on_delete=models.CASCADE)
+    seller = models.ForeignKey(SupplierUser,null=True,verbose_name='فروشنده',on_delete=models.SET_NULL)
     price = models.PositiveIntegerField(null=False,verbose_name='قیمت')
     storage_count = models.PositiveIntegerField(null=False,verbose_name='تعداد در انبار این فروشگاه')
 
