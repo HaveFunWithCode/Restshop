@@ -10,8 +10,6 @@ from users.models import ShopUser
 def send_verification_email(user_id):
 
     try:
-
-
         user = ShopUser.objects.get(pk=user_id)
         send_mail(
             subject =' SepehrShop email verification',
@@ -20,10 +18,8 @@ def send_verification_email(user_id):
             recipient_list=[user.email],
             fail_silently=False)
 
-
     except Exception as e:
         logging.warning('exp message '+str(e))
 
-        # logging.warning("Tried to send verification email to non-existing user '%s'" % user_id)
 
 
