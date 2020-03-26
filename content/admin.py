@@ -3,13 +3,8 @@ from django import forms
 from django.contrib import admin
 from jsonschemaform.admin.widgets.jsonschema_widget import JSONSchemaWidget
 from .models import Category, Product, Type, Brand, ProductUnit, SupplierUser, Image
+from .mixins import LoadShemaMixin
 
-
-class LoadShemaMixin(object):
-    def load_schema(self,cat_id):
-        DATA_SCHEMA_name = Category.objects.values_list('attributes_Schema_name', flat=True).get(id=int(cat_id))
-        with open("attSchemas/{0}".format(DATA_SCHEMA_name)) as jfile:
-            return json.load(jfile)
 
 
 class ProductImageInline(admin.StackedInline):
@@ -72,9 +67,9 @@ class productUnitJsonForm(forms.ModelForm, LoadShemaMixin):
             first_cat_row = Category.objects.values_list('id', flat=True).first()
             cat_id = kwargs.get('instance').product.category_id if 'instance' in kwargs else first_cat_row
 
-        DATA_SCHEMA = self.load_schema(cat_id)
-        enumfields = [[a, DATA_SCHEMA["properties"][a]['enum']] for a in DATA_SCHEMA["properties"] if
-                      'enum' in DATA_SCHEMA["properties"][a]]
+        CATEGORY_SCHEMA = self.load_schema(cat_id)
+        enumfields = [[a, CATEGORY_SCHEMA["properties"][a]['enum']] for a in CATEGORY_SCHEMA["properties"] if
+                      'enum' in CATEGORY_SCHEMA["properties"][a]]
 
         names = [a[0] for a in enumfields]
         values = [a[1] for a in enumfields]
@@ -110,13 +105,13 @@ class ProductJSONModelAdminForm(forms.ModelForm,LoadShemaMixin):
             cat_id = int(kwargs.get('initial')['catid']) if 'initial' in kwargs and 'catid' in kwargs.get(
                 'initial') else (
                 int(args[0].get('category')) if len(args) > 0 and 'category' in args[0] else first_cat_row)
-        DATA_SCHEMA = self.load_schema(cat_id)
+        CATEGORY_SCHEMA = self.load_schema(cat_id)
 
         super().__init__(*args, **kwargs)
 
         self.initial['category'] = cat_id
         self.fields['brand'].queryset = Brand.objects.filter(category_id=cat_id)
-        self.fields['values'].widget = JSONSchemaWidget(DATA_SCHEMA)
+        self.fields['values'].widget = JSONSchemaWidget(CATEGORY_SCHEMA)
 
     class Meta:
         model = Product

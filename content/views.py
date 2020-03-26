@@ -150,5 +150,3 @@ class CategoryListViewSet(viewsets.ViewSet):
     def retrieve(self, request, pk=None):
         return redirect('search',catid=pk)
 
-
-
