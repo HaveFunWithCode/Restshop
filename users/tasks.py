@@ -10,13 +10,16 @@ from users.models import ShopUser
 def send_verification_email(user_id):
 
     try:
-        user= ShopUser.objects.get(pk=user_id)
+
+
+        user = ShopUser.objects.get(pk=user_id)
         send_mail(
             subject =' SepehrShop email verification',
             message =' Follow below link to verify your account: http://localhost:8007%s'% reverse('verify',kwargs={'uuid':str(user.verification_uuid)}),
             from_email = 'msshop202020@gmail.com',
             recipient_list=[user.email],
             fail_silently=False)
+
 
     except Exception as e:
         logging.warning('exp message '+str(e))

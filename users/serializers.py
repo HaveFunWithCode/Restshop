@@ -2,6 +2,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 from .models import ShopUser, CustomerProfile, Adress
+from .tasks import send_verification_email
 
 
 # class AddressSerializer(serializers.ModelSerializer):
@@ -88,6 +89,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user=ShopUser(email=validated_data['email'])
         user.set_password(validated_data['password'])
         user.save()
+        # send_verification_email.delay(user.id)
         if validated_data['customerProfile']!=None:
             profile_data = validated_data.pop('customerProfile')
             user.refresh_from_db()
