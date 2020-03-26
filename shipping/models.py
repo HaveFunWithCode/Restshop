@@ -36,6 +36,7 @@ class Order(models.Model):
     class Meta:
         ordering = ('-created_at',)
 
+
     def __str__(self):
         return 'order {}'.format(self.id)
 
