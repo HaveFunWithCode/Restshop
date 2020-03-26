@@ -1,5 +1,6 @@
 from django.db import models
 from content.models import ProductUnit
+from shipping.tasks import send_shipping_changed_email
 from shop import settings
 from users.models import ShopUser, Adress
 from django.utils.translation import gettext_lazy as _
@@ -10,6 +11,7 @@ class Order(models.Model):
     CANCLED = 'canceled'
     UNSUCCESSFUL = 'unsuccessful'
     SUCCESSFUL = 'successful'
+
     SENT = 'sent'
     DELIVERED = 'delivered'
 
@@ -36,9 +38,17 @@ class Order(models.Model):
     class Meta:
         ordering = ('-created_at',)
 
+    def save(self, *args, **kwargs):
+        if self.shipping_status==self.SENT:
+            send_shipping_changed_email.delay(self.customer_id)
+        return super(Order, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return 'order {}'.format(self.id)
+
+
+
 
 
 class OrderItem(models.Model):
