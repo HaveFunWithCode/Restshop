@@ -9,7 +9,9 @@ from collections import defaultdict
 
 # TODO: show name of product in shopping cart
 class Cart(object):
-
+    """ this class save cart content in session for anonymous and save
+    it in database for authenticated users
+    """
     def __get_product_unit_count(self, pid):
         product_unit = ProductUnit.objects.all().filter(id=pid)
 
@@ -54,7 +56,6 @@ class Cart(object):
                     self.cart.update(last_session_cart)
                 if new_session_cart:
                     self.cart.update(new_session_cart)
-
 
             else:
                 self.cart = last_session_cart
