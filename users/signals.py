@@ -16,7 +16,6 @@ def update_user_profile(sender, instance, created, **kwargs):
         if not instance.is_superuser:
             CustomerProfile.objects.create(user=instance)
             ShoppingCart.objects.create(customer=instance).save()
-            Token.objects.create(user=instance)
 
             if not instance.is_verified:
                 _20secondlater= datetime.utcnow() + timedelta(seconds=20)

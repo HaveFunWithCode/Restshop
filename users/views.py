@@ -7,7 +7,6 @@ from rest_framework.decorators import action
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
-from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 
 from django.contrib.auth import logout
@@ -26,8 +25,7 @@ class ProfileView(APIView):
     permission_classes =[IsAuthenticated]
     serializer_class=CustomerProfileSerializer
     def get(self,request):
-        token = request.META.get('HTTP_AUTHORIZATION').replace('Token', '').strip()
-        user = ShopUser.objects.get(id=Token.objects.get(key=token).user_id)
+        user = request.user
         return Response(self.serializer_class(user.customerProfile).data)
 
 class AddressViewSet(ModelViewSet):
